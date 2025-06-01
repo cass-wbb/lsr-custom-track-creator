@@ -1,6 +1,3 @@
-import file_create
-import place_piece
-
 def create_blank_lines() -> list[list[str]]:
     """ Creates blank lines to be used for track pieces
     This function works only for single player tracks.
