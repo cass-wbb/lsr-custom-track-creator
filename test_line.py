@@ -10,7 +10,7 @@ def create_blank_lines() -> list[list[str]]:
     for element in lines:
         i = 0
         while i < 16:
-            element.append("00 00 00 00 00 00 80 BF FF FF FF FF 00 00 00 00")
+            element.append("00 00 00 00 00 00 80 BF FF FF FF FF 00 00 00 00\n")
             i += 1
     return lines
 
@@ -22,19 +22,21 @@ def biome_select(biome: str) -> str:
     :return: the single player biome header
     """
     if biome == "city":
-        return "28 00 01 00 01 00 00 00 03 00 00 00 00 00 00 00"
+        return "28 00 01 00 01 00 00 00 03 00 00 00 00 00 00 00\n"
     elif biome == "desert":
-        return "28 00 01 00 01 00 00 00 02 00 00 00 00 00 00 00"
+        return "28 00 01 00 01 00 00 00 02 00 00 00 00 00 00 00\n"
     elif biome == "jungle":
-        return "28 00 01 00 01 00 00 00 00 00 00 00 00 00 00 00"
+        return "28 00 01 00 01 00 00 00 00 00 00 00 00 00 00 00\n"
     elif biome == "winter":
-        return "28 00 01 00 01 00 00 00 01 00 00 00 00 00 00 00"
+        return "28 00 01 00 01 00 00 00 01 00 00 00 00 00 00 00\n"
     else:
         raise ValueError("Biome not available. Please type one of the following:\ncity, desert, jungle, winter")
 
 def main():
     lines = create_blank_lines()
     biome = biome_select("city")
+    complete = False
+    file_create.create_file("test", biome, lines, complete)
 
 if __name__ == "__main__":
     main()
