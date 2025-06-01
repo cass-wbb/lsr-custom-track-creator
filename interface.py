@@ -24,7 +24,9 @@ def main():
     # place_piece.place_other_part(2, 3, 2, "curve", 0, "city", lines)
     # place_piece.place_other_part(1, 3, 3, "curve", 0, "city", lines)
 
-    # file_create.create_file("full_track", biome, lines, complete)
+    name = input("What would you like the track to be named?")
+
+    file_create.create_file(name, biome, lines, complete)
 
 if __name__ == "__main__":
     main()
