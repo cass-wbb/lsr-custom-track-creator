@@ -1,0 +1,35 @@
+Finish Line
+Normal track
+Normal track (walls)
+Curve
+Curve (walls)
+Vent
+Stop light
+Covered track piece
+Speed bump
+Street Light
+Bumps
+Boxes
+Intersection
+Ramp
+Ramp (walls)
+Ramp (arrows)
+Fan
+Crusher
+Truck Barrier
+3 long piece
+Long curve
+Long curve (walls)
+Double twist
+Loop
+Mud
+Stunt Jump
+Roadside Trap
+Cannon
+Splat Power up
+Turbo power up
+Bumper car power up
+Traction power up
+Freeze power up
+Random power up
+Factory Building
