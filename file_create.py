@@ -3,6 +3,8 @@ def create_file(file_name: str, biome_line: str, track_lines: list, complete: bo
     
     :param file_name: The name of the file to be created
     :param biome_line: The biome header line
+    :param track_lines: The list of track lines
+    :param complete: Determines whether or not the track is completed. I reccommend this to be set to false, so you can check it in game first.
     """
     with open(f"{file_name}.txt", 'w',) as f:
         # Write the header line

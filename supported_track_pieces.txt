@@ -1,35 +1,35 @@
 Finish Line
-Normal track
-Normal track (walls)
-Curve
-Curve (walls)
-Vent
-Stop light
-Covered track piece
-Speed bump
-Street Light
-Bumps
-Boxes
-Intersection
-Ramp
-Ramp (walls)
-Ramp (arrows)
-Fan
-Crusher
-Truck Barrier
-3 long piece
-Long curve
-Long curve (walls)
-Double twist
-Loop
-Mud
-Stunt Jump
-Roadside Trap
-Cannon
-Splat Power up
-Turbo power up
-Bumper car power up
-Traction power up
-Freeze power up
-Random power up
-Factory Building
+Normal track -> track
+Normal track (walls) -> wtrack
+Curve -> curve
+Curve (walls) -> wcurve
+Vent -> vent
+Stop light -> slight
+Covered track piece -> covered
+Speed bump -> sbump
+Night Light -> nlight
+Bumps -> bumps
+Boxes -> box
+Intersection -> isec
+Ramp -> ramp
+Ramp (walls) -> wramp
+Ramp (arrows) -> aramp
+Fan -> fan
+Crusher -> crush
+Truck Barrier -> tbar
+3 long piece ->3l
+Long curve -> lcurve
+Long curve (walls)-> wlcurve
+Double twist -> dtwist
+Loop -> loop
+Mud -> mud
+Stunt Jump -> sjump
+Roadside Trap -> rtrap
+Cannon -> cannon
+Splat Power up -> splat
+Turbo power up -> turbo
+Bumper car power up -> bumper
+Traction power up -> traction
+Freeze power up -> freeze
+Random power up -> random
+Factory Building -> factory

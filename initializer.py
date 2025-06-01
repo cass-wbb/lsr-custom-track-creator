@@ -1,4 +1,5 @@
 import file_create
+import place_piece
 
 def create_blank_lines() -> list[list[str]]:
     """ Creates blank lines to be used for track pieces
@@ -14,29 +15,27 @@ def create_blank_lines() -> list[list[str]]:
             i += 1
     return lines
 
-def biome_select(biome: str) -> str:
-    """ Selects a biome for the background
+def biome_day_select(biome: str, day: bool) -> str:
+    """ Selects a biome and if it is day/night for the background
     This function only works for single player tracks.
     
     :param biome: The name of the biome to use for this level.
     :return: the single player biome header
     """
+    if day:
+        day_night = "00"
+    else:
+        day_night = "01"
+
     if biome == "city":
-        return "28 00 01 00 01 00 00 00 03 00 00 00 00 00 00 00\n"
+        biome_byte = "03"
     elif biome == "desert":
-        return "28 00 01 00 01 00 00 00 02 00 00 00 00 00 00 00\n"
+        biome_byte = "02"
     elif biome == "jungle":
-        return "28 00 01 00 01 00 00 00 00 00 00 00 00 00 00 00\n"
+        biome_byte = "00"
     elif biome == "winter":
-        return "28 00 01 00 01 00 00 00 01 00 00 00 00 00 00 00\n"
+        biome_byte = "01"
     else:
         raise ValueError("Biome not available. Please type one of the following:\ncity, desert, jungle, winter")
-
-def main():
-    lines = create_blank_lines()
-    biome = biome_select("city")
-    complete = False
-    file_create.create_file("test", biome, lines, complete)
-
-if __name__ == "__main__":
-    main()
+    
+    return f"28 00 01 00 01 00 00 00 {biome_byte} 00 00 00 {day_night} 00 00 00\n"
