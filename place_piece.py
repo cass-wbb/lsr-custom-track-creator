@@ -72,3 +72,12 @@ def place_other_part(x: int, y: int, orientation: int, piece_id: str, elevation:
         elevation_hex = "C0 41"
 
     lines[y - 1][x - 1] = f"00 00 00 00 00 00 {elevation_hex} {piece_hex} {orientation_hex} 00 00 00\n"
+
+def clear(lines):
+    x = int(input("Which x coordinate would you like to clear? "))
+    y = int(input("Which y coordinate would you like to clear? "))
+
+    if x < 0 or x > 16 or y < 0 or y > 16:
+        raise ValueError("Coordinates must be between a 16x16 grid.")
+    
+    lines[y - 1][x - 1] = "00 00 00 00 00 00 80 BF FF FF FF FF 00 00 00 00\n"
