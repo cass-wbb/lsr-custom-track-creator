@@ -36,3 +36,17 @@ def biome_day_select(biome: str, day: bool) -> str:
         raise ValueError("Biome not available. Please type one of the following:\ncity, desert, jungle, winter")
     
     return f"28 00 01 00 01 00 00 00 {biome_byte} 00 00 00 {day_night} 00 00 00\n"
+
+def create_readable_lines() -> list[list[str]]:  # This is not implemented yet
+    """ Creates blank lines to be used for track pieces
+    This function works only for single player tracks.
+
+    :return: The list of blank lines, represented in piece ids
+    """
+    pieces = [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]]
+    for element in pieces:
+        i = 0
+        while i < 16:
+            element.append("blank\t")
+            i += 1
+    return pieces
