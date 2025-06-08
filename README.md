@@ -6,7 +6,7 @@ When this is completed, it should produce a fully functional .trk file, able to 
 
 As this is very much a work in progress, it likely won't do any of that for quite a while.
 
-As of right now, it only supports creating a track file using parts from the city biome, but it does work! It also outputs to a plain text file, which will need to be put into a hex editor and saved as a .trk file to bring it in game.
+As of right now, it only outputs to a plain text file, which will need to be put into a hex editor and saved as a .trk file to bring it in game.
 
 ## An explanation on how the .trk file type works
 
