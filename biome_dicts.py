@@ -150,3 +150,47 @@ def biome_hex_getter(biome: str):
         track_dict["factory"] = "75 3F 00 00"
 
     return track_dict
+
+def id_to_name():
+    """ Returns a dictionary of placeable pieces with their full name counterparts
+    
+    :return: Dictionary of track pieces to be used for the preview file
+    """
+    id_dict = {}
+    id_dict = {}
+    id_dict["track"] = "Track"
+    id_dict["wtrack"] = "Track with walls"
+    id_dict["curve"] = "Curve"
+    id_dict["wcurve"] = "Curve with walls"
+    id_dict["vent"] = "Vent"
+    id_dict["slight"] = "Stop light"
+    id_dict["covered"] = "Covered piece"
+    id_dict["sbump"] = "Speed bump"
+    id_dict["nlight"] = "Night light"
+    id_dict["bumps"] = "Bumps"
+    id_dict["box"] = "Boxes"
+    id_dict["isec"] = "Intersection"
+    id_dict["ramp"] = "Ramp"
+    id_dict["wramp"] = "Ramp with walls"
+    id_dict["aramp"] = "Ramp with arrows"
+    id_dict["fan"] = "Fan"
+    id_dict["crush"] = "Crusher"
+    id_dict["tbar"] = "Truck barrier"
+    id_dict["3l"] = "3 long piece"
+    id_dict["lcurve"] = "Long curve"
+    id_dict["wlcurve"] = "Long curve with walls"
+    id_dict["dtwist"] = "Double twist"
+    id_dict["loop"] = "Loop"
+    id_dict["mud"] = "Mud"
+    id_dict["sjump"] = "Stunt jump"
+    id_dict["rtrap"] = "Roadside trap"
+    id_dict["cannon"] = "Cannon"
+    id_dict["splat"] = "Splat power up"
+    id_dict["turbo"] = "Turbo power up"
+    id_dict["bumper"] = "Bumper power up"
+    id_dict["traction"] = "Traction power up"
+    id_dict["freeze"] = "Freeze power up"
+    id_dict["random"] = "Random power up"
+    id_dict["factory"] = "Factory building"
+
+    return id_dict

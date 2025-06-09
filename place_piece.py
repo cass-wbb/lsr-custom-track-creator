@@ -1,6 +1,6 @@
 import biome_dicts
 
-def place_finish_line(x: int, y: int, orientation: int, elevation: int, biome: str, lines: list):
+def place_finish_line(x: int, y: int, orientation: int, elevation: int, biome: str, lines: list, preview_lines: list):
     """Places the finish line on the track
     
     :param x: The X coordinate to place the finish line on (1-16)
@@ -8,12 +8,13 @@ def place_finish_line(x: int, y: int, orientation: int, elevation: int, biome: s
     :param orientation: determines the direction the finish line will face (1-4)
     :param elevation: The elevation the piece will be at (0-3)
     :param biome: The biome to pull the hex data from
-    :param lines: the list of lines
+    :param lines: the list of lines for the output file
+    :param preview_lines: the list of lines for the preview file
     """
-    if orientation < 4 and orientation > 0:
+    if orientation <= 3 and orientation >= 0:
         orientation_hex = "0" + str(orientation)
     else:
-        raise ValueError("Orientation must be between 0 and 4")
+        raise ValueError("Orientation must be between 0 and 3")
 
     if x < 0 or x > 16 or y < 0 or y > 16:
         raise ValueError("Coordinates must be between a 16x16 grid.")
@@ -40,7 +41,13 @@ def place_finish_line(x: int, y: int, orientation: int, elevation: int, biome: s
 
     lines[y - 1][x - 1] = f"00 00 00 00 00 00 {elevation_hex} {piece_hex} {orientation_hex} 00 00 00\n"
 
-def place_other_part(x: int, y: int, orientation: int, piece_id: str, elevation: int, biome: str, lines: list):
+    # Here and below is for preview file
+    if x != 1:
+        preview_lines[y - 1][16 - x] = f"Finish Line\t"
+    else:
+        preview_lines[y - 1][16 - x] = f"Finish Line\n"
+
+def place_other_part(x: int, y: int, orientation: int, piece_id: str, elevation: int, biome: str, lines: list, preview_lines: list):
     """Places a piece on the track
     
     :param x: The X coordinate to place the piece on (1-16)
@@ -49,7 +56,8 @@ def place_other_part(x: int, y: int, orientation: int, piece_id: str, elevation:
     :param piece_id: the ID of the piece. Viewable in supported_track_pieces.txt
     :param elevation: The elevation the piece will be at (0-3)
     :param biome: The biome to pull the hex data from
-    :param lines: the list of lines
+    :param lines: the list of lines for the output file
+    :param preview_lines: The list of lines for the preview file
     """
     if orientation <= 4 and orientation >= 0:
         orientation_hex = "0" + str(orientation)
@@ -73,7 +81,21 @@ def place_other_part(x: int, y: int, orientation: int, piece_id: str, elevation:
 
     lines[y - 1][x - 1] = f"00 00 00 00 00 00 {elevation_hex} {piece_hex} {orientation_hex} 00 00 00\n"
 
-def clear(lines):
+    # Here and below is for preview file
+    id_dict = biome_dicts.id_to_name()
+    piece_name = id_dict[piece_id]
+
+    if x != 1:
+        preview_lines[y - 1][16 - x] = f"{piece_name}\t"
+    else:
+        preview_lines[y - 1][16 - x] = f"{piece_name}\n"
+
+def clear(lines: list, preview_lines: list):
+    """ Clears a given spot in the file
+
+    :param lines: The list of lines for the output file
+    :param preview_lines: The list of lines for the preview file
+    """
     x = int(input("Which x coordinate would you like to clear? "))
     y = int(input("Which y coordinate would you like to clear? "))
 
@@ -81,3 +103,9 @@ def clear(lines):
         raise ValueError("Coordinates must be between a 16x16 grid.")
     
     lines[y - 1][x - 1] = "00 00 00 00 00 00 80 BF FF FF FF FF 00 00 00 00\n"
+
+    # Here and below is for preview file
+    if x != 1:
+        preview_lines[y - 1][16 - x] = f"-\t"
+    else:
+        preview_lines[y - 1][16 - x] = f"-\n"

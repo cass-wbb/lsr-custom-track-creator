@@ -46,7 +46,8 @@ def create_readable_lines() -> list[list[str]]:  # This is not implemented yet
     pieces = [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]]
     for element in pieces:
         i = 0
-        while i < 16:
-            element.append("blank\t")
+        while i < 15:
+            element.append("-\t")
             i += 1
+        element.append("-\n")
     return pieces

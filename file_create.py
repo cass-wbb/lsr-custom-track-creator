@@ -24,3 +24,19 @@ def create_file(file_name: str, biome_line: str, track_lines: list, complete: bo
         else:
             f.write("00 00 00 00 00 00 00 00")
         f.close()
+    print(f"File created with name {file_name}.txt. Use a hex editor to make a .trk file from here.")
+
+def create_preview(file_name: str, biome: str, preview_lines: list):
+    """ Creates a .tsv file that can be put in Excel or a similar program
+    to see how the track works.
+    
+    :param file_name: The name of the preview file to be created, as .tsv
+    :param biome: The biome data
+    :param track_lines: The list of readable lines
+    """
+    with open(f"{file_name}.tsv", 'w') as preview_file:
+        for element in preview_lines:
+            for line in element:
+                preview_file.write(f"{line}")
+        preview_file.close()
+    print(f"File create with name {file_name}.tsv. Use excel to view.")
