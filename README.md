@@ -16,7 +16,7 @@ Each track piece has its own hex value, biome value, and two zeroed out bytes, c
 
 # How to use this program
 
-By running interface.py, you are able to create an entire single player track for LEGO Stunt Rally, without even opening the game!
+By running sb_sp_interface.py, you are able to create an entire single player track for LEGO Stunt Rally, without even opening the game!
 When you go through the program, it will prompt you for specific data. Follow the prompts and you should be able to create a track!
 As of right now, if you place an invalid piece, or any invalid data, the program will crash and all data will be lost. So don't do that.
 
@@ -39,5 +39,5 @@ From here, you can copy another one and name it Autosaved.trk to load it on the 
 
 ### Future plans for this program
 
-* Make interface.py the only script in the root of this folder, so it is easier to know what to run
 * Make it possible to restore a working .trk file in the event that a track crashes
+* Make alternate versions for multiplayer tracks, as well as tracks containing pieces from multiple biomes
