@@ -37,7 +37,7 @@ def biome_day_select(biome: str, day: bool) -> str:
     
     return f"28 00 01 00 01 00 00 00 {biome_byte} 00 00 00 {day_night} 00 00 00\n"
 
-def create_readable_lines() -> list[list[str]]:  # This is not implemented yet
+def create_readable_lines() -> list[list[str]]:
     """ Creates blank lines to be used for track pieces
     This function works only for single player tracks.
 

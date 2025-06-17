@@ -1,4 +1,4 @@
-import initializer, place_piece, file_create
+import sb_sp_files.initializer as initializer, sb_sp_files.place_piece as place_piece, sb_sp_files.file_create as file_create
 
 def main():
     lines = initializer.create_blank_lines()

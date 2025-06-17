@@ -85,6 +85,8 @@ def place_other_part(x: int, y: int, orientation: int, piece_id: str, elevation:
     id_dict = biome_dicts.id_to_name()
     piece_name = id_dict[piece_id]
 
+    # if piece_id == (put multi-spot pieces here)
+        # Code here to determine the other spot that is covered, and put that piece in the preview file
     if x != 1:
         preview_lines[y - 1][16 - x] = f"{piece_name}\t"
     else:
