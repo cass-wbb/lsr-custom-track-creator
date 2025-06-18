@@ -157,7 +157,6 @@ def id_to_name():
     :return: Dictionary of track pieces to be used for the preview file
     """
     id_dict = {}
-    id_dict = {}
     id_dict["track"] = "Track"
     id_dict["wtrack"] = "Track with walls"
     id_dict["curve"] = "Curve"
