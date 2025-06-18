@@ -59,10 +59,10 @@ def place_other_part(x: int, y: int, orientation: int, piece_id: str, elevation:
     :param lines: the list of lines for the output file
     :param preview_lines: The list of lines for the preview file
     """
-    if orientation <= 4 and orientation >= 0:
+    if orientation <= 3 and orientation >= 0:
         orientation_hex = "0" + str(orientation)
     else:
-        raise ValueError("Orientation must be between 0 and 4")
+        raise ValueError("Orientation must be between 0 and 3")
 
     if x < 0 or x > 16 or y < 0 or y > 16:
         raise ValueError("Coordinates must be between a 16x16 grid.")
