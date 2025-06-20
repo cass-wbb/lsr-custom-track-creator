@@ -4,6 +4,13 @@ def main():
     lines = initializer.create_blank_lines()
     preview_lines = initializer.create_readable_lines()
     biome_select = input("Which biome would you like to use? ").lower()
+    advance = False
+    while not advance:
+        if biome_select != "city" or biome_select != "desert" or biome_select != "jungle" or biome_select != "winter":
+            print("That is not a biome. Please type city, desert, jungle, or winter.")
+            biome_select = input("Which biome would you like to use? ").lower()
+        else:
+            advance = True
     if input("Do you want it to be day or night? ").lower() == "day":
         day = True
     else:

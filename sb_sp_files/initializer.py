@@ -24,16 +24,22 @@ def biome_day_select(biome: str, day: bool) -> str:
     else:
         day_night = "01"
 
-    if biome == "city":
-        biome_byte = "03"
-    elif biome == "desert":
-        biome_byte = "02"
-    elif biome == "jungle":
-        biome_byte = "00"
-    elif biome == "winter":
-        biome_byte = "01"
-    else:
-        raise ValueError("Biome not available. Please type one of the following:\ncity, desert, jungle, winter")
+    advance = False
+    while not advance:
+        if biome == "city":
+            biome_byte = "03"
+            advance = True
+        elif biome == "desert":
+            biome_byte = "02"
+            advance = True
+        elif biome == "jungle":
+            biome_byte = "00"
+            advance = True
+        elif biome == "winter":
+            biome_byte = "01"
+            advance = True
+        else:
+            biome = input("Biome not available. Please type one of the following:\ncity, desert, jungle, winter").lower()
     
     return f"28 00 01 00 01 00 00 00 {biome_byte} 00 00 00 {day_night} 00 00 00\n"
 
