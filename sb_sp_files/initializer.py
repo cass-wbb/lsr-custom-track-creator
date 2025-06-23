@@ -9,7 +9,7 @@ def create_blank_lines() -> list[list[str]]:
         i = 0
         while i < 16:
             # Currently sets to an elevation of 3 due to an issue with python
-            element.append("\x00\x00\x00\x00\x00\x00\xC0\x41\xFF\xFF\xFF\xFF\x00\x00\x00\x00")
+            element.append(b"\x00\x00\x00\x00\x00\x00\x80\xBF\xFF\xFF\xFF\xFF\x00\x00\x00\x00")
             i += 1
     return lines
 
@@ -21,28 +21,28 @@ def biome_day_select(biome: str, day: bool) -> str:
     :return: the single player biome header
     """
     if day:
-        day_night = "\x00"
+        day_night = b"\x00"
     else:
-        day_night = "\x01"
+        day_night = b"\x01"
 
     advance = False
     while not advance:
         if biome == "city":
-            biome_byte = "\x03"
+            biome_byte = b"\x03"
             advance = True
         elif biome == "desert":
-            biome_byte = "\x02"
+            biome_byte = b"\x02"
             advance = True
         elif biome == "jungle":
-            biome_byte = "\x00"
+            biome_byte = b"\x00"
             advance = True
         elif biome == "winter":
-            biome_byte = "\x01"
+            biome_byte = b"\x01"
             advance = True
         else:
             biome = input("Biome not available. Please type one of the following:\ncity, desert, jungle, winter").lower()
     
-    return f"\x28\x00\x01\x00\x01\x00\x00\x00{biome_byte}\x00\x00\x00{day_night}\x00\x00\x00"
+    return b"\x28\x00\x01\x00\x01\x00\x00\x00" + biome_byte + b"\x00\x00\x00" + day_night + b"\x00\x00\x00"
 
 def create_readable_lines() -> list[list[str]]:
     """ Creates blank lines to be used for track pieces
