@@ -16,7 +16,14 @@ def place_finish_line(x: int, y: int, orientation: int, elevation: int, biome: s
     advance = False
     while not advance:
         if orientation <= 3 and orientation >= 0:
-            orientation_hex = "0" + str(orientation)
+            if orientation == 0:
+                orientation_hex = "\x00"
+            elif orientation == 1:
+                orientation_hex = "\x01"
+            elif orientation == 2:
+                orientation_hex = "\x02"
+            elif orientation == 3:
+                orientation_hex = "\x03"
             advance = True
         else:
             print("Orientation must be between 0 and 3.")
@@ -38,32 +45,38 @@ def place_finish_line(x: int, y: int, orientation: int, elevation: int, biome: s
     advance = False
     while not advance:
         if biome == "city":
-            piece_hex = "30 43 00 00"
+            piece_hex = "\x30\x43\x00\x00"
             advance = True
         elif biome == "desert":
-            piece_hex = "1D 47 00 00"
+            piece_hex = "\x1D\x47\x00\x00"
             advance = True
         elif biome == "jungle":
-            piece_hex = "65 3B 00 00"
+            piece_hex = "\x65\x3B\x00\x00"
             advance = True
         elif biome == "winter":
-            piece_hex = "48 3F 00 00"
+            piece_hex = "\x48\x3F\x00\x00"
             advance = True
         else:
             print("Not a biome")
             biome = input("Which biome would you like to use? ").lower()
     
     # Set the elevation
-    if elevation <= 0:
-        elevation_hex = "80 BF"
-    elif elevation == 1:
-        elevation_hex = "00 41"
-    elif elevation == 2:
-        elevation_hex = "80 41"
-    else:
-        elevation_hex = "C0 41"
+    advance = False
+    while not advance:
+        if elevation <= 0:
+            # elevation_hex = "\x80\xBF"
+            elevation = int(input("Due to an issue with python, this program currently doesn't support elevations of 0 or 2. This will be fixed soon. In the meantime, please type either 1 or 3 for the elevation. "))
+        elif elevation == 1:
+            elevation_hex = "\x00\x41"
+            advance = True
+        elif elevation == 2:
+            # elevation_hex = "\x80\x41"
+            elevation = int(input("Due to an issue with python, this program currently doesn't support elevations of 0 or 2. This will be fixed soon. In the meantime, please type either 1 or 3 for the elevation. "))
+        else:
+            elevation_hex = "\xC0\x41"
+            advance = True
 
-    lines[y - 1][x - 1] = f"00 00 00 00 00 00 {elevation_hex} {piece_hex} {orientation_hex} 00 00 00\n"
+    lines[y - 1][x - 1] = f"\x00\x00\x00\x00\x00\x00{elevation_hex}{piece_hex}{orientation_hex}\x00\x00\x00"
 
     # Here and below is for preview file
     # Determines whether or not the x coordinate is the last one on the right
@@ -84,11 +97,18 @@ def place_other_part(x: int, y: int, orientation: int, piece_id: str, elevation:
     :param lines: the list of lines for the output file
     :param preview_lines: The list of lines for the preview file
     """
-    # Sets orientation byte
+    # set the orientation byte
     advance = False
     while not advance:
         if orientation <= 3 and orientation >= 0:
-            orientation_hex = "0" + str(orientation)
+            if orientation == 0:
+                orientation_hex = "\x00"
+            elif orientation == 1:
+                orientation_hex = "\x01"
+            elif orientation == 2:
+                orientation_hex = "\x02"
+            elif orientation == 3:
+                orientation_hex = "\x03"
             advance = True
         else:
             print("Orientation must be between 0 and 3.")
@@ -106,22 +126,55 @@ def place_other_part(x: int, y: int, orientation: int, piece_id: str, elevation:
         else:
             advance = True
     
-    # sets biome byte
+    # sets pice hex
     biome_dict = biome_dicts.biome_hex_getter(biome)
-    piece_hex = biome_dict[piece_id]
+    # Avoids having python crash during file writing
+    if piece_id == "nlight" and biome == "city":
+        print("Due to an issue with python, this piece in this biome is currently not supported. This should be fixed soon.")
+        advance = False
+        while not advance:
+            new_biome = input("Please type a different biome to have this piece be set as. Before loading the file, make sure to load a new track and go through each of the biomes, otherwise, the game will crash. ")
+            if new_biome == "desert" or new_biome == "jungle" or new_biome == "winter":
+                advance = True
+            else:
+                print("Invalid biome")
+        new_biome_dict = biome_dicts.biome_hex_getter(new_biome)
+        piece_hex = new_biome_dict[piece_id]
 
-    # sets elevation byte
-    if elevation <= 0:
-        elevation_hex = "80 BF"
-    elif elevation == 1:
-        elevation_hex = "00 41"
-    elif elevation == 2:
-        elevation_hex = "80 41"
+    elif biome == "jungle":
+        if piece_id == "slight" or piece_id == "ramp" or piece_id == "splat" or piece_id == "turbo" or piece_id == "bumper" or piece_id == "traction" or piece_id == "freeze" or piece_id == "random" or piece_id == "factory":
+            print("Due to an issue with python, this piece in this biome is currently not supported. This should be fixed soon.")
+            advance = False
+            while not advance:
+                new_biome = input("Please type a different biome to have this piece be set as. Before loading the file, make sure to load a new track and go through each of the biomes, otherwise, the game will crash. ")
+                if new_biome == "desert" or new_biome == "city" or new_biome == "winter":
+                    advance = True
+                else:
+                    print("Invalid biome")
+            new_biome_dict = biome_dicts.biome_hex_getter(new_biome)
+            piece_hex = new_biome_dict[piece_id]
+
     else:
-        elevation_hex = "C0 41"
+        piece_hex = biome_dict[piece_id]
+
+    # Set the elevation
+    advance = False
+    while not advance:
+        if elevation <= 0:
+            # elevation_hex = "\x80\xBF"
+            elevation = int(input("Due to an issue with python, this program currently doesn't support elevations of 0 or 2. This will be fixed soon. In the meantime, please type either 1 or 3 for the elevation. "))
+        elif elevation == 1:
+            elevation_hex = "\x00\x41"
+            advance = True
+        elif elevation == 2:
+            # elevation_hex = "\x80\x41"
+            elevation = int(input("Due to an issue with python, this program currently doesn't support elevations of 0 or 2. This will be fixed soon. In the meantime, please type either 1 or 3 for the elevation. "))
+        else:
+            elevation_hex = "\xC0\x41"
+            advance = True
 
     # Sets the line to the correct data
-    lines[y - 1][x - 1] = f"00 00 00 00 00 00 {elevation_hex} {piece_hex} {orientation_hex} 00 00 00\n"
+    lines[y - 1][x - 1] = f"\x00\x00\x00\x00\x00\x00{elevation_hex}{piece_hex}{orientation_hex}\x00\x00\x00"
 
     # Here and below is for preview file
     # Sets biome and name data
@@ -193,7 +246,8 @@ def clear(lines: list, preview_lines: list):
         else:
             advance = True
     
-    lines[y - 1][x - 1] = "00 00 00 00 00 00 80 BF FF FF FF FF 00 00 00 00\n"
+    # Currently sets it to an elevation of 3 due to an issue with python and hex
+    lines[y - 1][x - 1] = "\x00\x00\x00\x00\x00\x00\xC0\x41\xFF\xFF\xFF\xFF\x00\x00\x00\x00"
 
     # Here and below is for preview file
     if x != 1:

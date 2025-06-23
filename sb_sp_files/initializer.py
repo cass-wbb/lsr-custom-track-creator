@@ -8,7 +8,8 @@ def create_blank_lines() -> list[list[str]]:
     for element in lines:
         i = 0
         while i < 16:
-            element.append("00 00 00 00 00 00 80 BF FF FF FF FF 00 00 00 00\n")
+            # Currently sets to an elevation of 3 due to an issue with python
+            element.append("\x00\x00\x00\x00\x00\x00\xC0\x41\xFF\xFF\xFF\xFF\x00\x00\x00\x00")
             i += 1
     return lines
 
@@ -20,28 +21,28 @@ def biome_day_select(biome: str, day: bool) -> str:
     :return: the single player biome header
     """
     if day:
-        day_night = "00"
+        day_night = "\x00"
     else:
-        day_night = "01"
+        day_night = "\x01"
 
     advance = False
     while not advance:
         if biome == "city":
-            biome_byte = "03"
+            biome_byte = "\x03"
             advance = True
         elif biome == "desert":
-            biome_byte = "02"
+            biome_byte = "\x02"
             advance = True
         elif biome == "jungle":
-            biome_byte = "00"
+            biome_byte = "\x00"
             advance = True
         elif biome == "winter":
-            biome_byte = "01"
+            biome_byte = "\x01"
             advance = True
         else:
             biome = input("Biome not available. Please type one of the following:\ncity, desert, jungle, winter").lower()
     
-    return f"28 00 01 00 01 00 00 00 {biome_byte} 00 00 00 {day_night} 00 00 00\n"
+    return f"\x28\x00\x01\x00\x01\x00\x00\x00{biome_byte}\x00\x00\x00{day_night}\x00\x00\x00"
 
 def create_readable_lines() -> list[list[str]]:
     """ Creates blank lines to be used for track pieces
