@@ -6,7 +6,7 @@ def main():
     biome_select = input("Which biome would you like to use? ").lower()
     advance = False
     while not advance:
-        if biome_select != "city" or biome_select != "desert" or biome_select != "jungle" or biome_select != "winter":
+        if biome_select != "city" and biome_select != "desert" and biome_select != "jungle" and biome_select != "winter":
             print("That is not a biome. Please type city, desert, jungle, or winter.")
             biome_select = input("Which biome would you like to use? ").lower()
         else:

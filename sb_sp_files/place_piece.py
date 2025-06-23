@@ -128,20 +128,49 @@ def place_other_part(x: int, y: int, orientation: int, piece_id: str, elevation:
     id_dict = biome_dicts.id_to_name()
     piece_name = id_dict[piece_id]
 
-    # Next section is for using multi-spot pieces in the preview file, not implemented yet.
-    # if piece_id == "bumps" or piece_id == "box" or piece_id == "tbar" or piece_id == "loop" or piece_id == "mud" or piece_id == "sjump" or piece_id == "rtrap" or piece_id == "cannon":
-        # Code here to determine the other spot that is covered, and put that piece in the preview file
-    # elif piece_id == "splat" or piece_id == "turbo" or piece_id == "bumper" or piece_id == "traction" or piece_id == "freeze" or piece_id == "random":
-        # Code here to determine the other spot that is covered, and put that piece in the preview file
-    # elif piece_id == "3l":
-        # Code here to determine the other two spots covered, put that in the preview
-    # elif piece_id == "lcurve" or piece_id == "wlcurve" or piece_id == "dtwist" or piece_id == "factory"
-
     # Determines whether or not the x coordinate is the last one on the right
     if x != 1:
         preview_lines[y - 1][16 - x] = f"{piece_name}\t"
     else:
         preview_lines[y - 1][16 - x] = f"{piece_name}\n"
+
+    # # Next section is for using multi-spot pieces in the preview file, not implemented yet.
+    # if piece_id == "bumps" or piece_id == "box" or piece_id == "tbar" or piece_id == "loop" or piece_id == "mud" or piece_id == "sjump" or piece_id == "rtrap" or piece_id == "cannon":
+    #     # Code here to determine the other spot that is covered, and put that piece in the preview file
+    #     if orientation == 1:
+    #         if x != 16:
+    #             preview_lines[y - 1][16 - (x + 1)] = f"{piece_name}\t"
+    #         else:
+    #             # clear the spot in the preview file, as it will not show in game
+    #             preview_lines[y - 1][16 - x] = "-\t"
+    #     elif orientation == 0:
+    #         if y != 16:
+    #             if x != 1:
+    #                 preview_lines[y][16 - x] = f"{piece_name}\t"
+    #             else:
+    #                 preview_lines[y][16 - x] = f"{piece_name}\n"
+    #         else:
+    #             # clear the spot in the preview file, as it will not show in game
+    #             if x != 1:
+    #                 preview_lines[y][16 - x] = "-\t"
+    #             else:
+    #                 preview_lines[y][16 - x] = "-\n"
+    #     elif orientation == 2:
+    #         # Basically the opposite of 0
+    #         pass
+    #     else:  # orientation == 3
+    #         # Basically the opposite of 1
+    #         pass
+
+    # elif piece_id == "splat" or piece_id == "turbo" or piece_id == "bumper" or piece_id == "traction" or piece_id == "freeze" or piece_id == "random":
+    #     # Code here to determine the other spot that is covered, and put that piece in the preview file
+    #     pass
+    # elif piece_id == "3l":
+    #     # Code here to determine the other two spots covered, put that in the preview
+    #     pass
+    # elif piece_id == "lcurve" or piece_id == "wlcurve" or piece_id == "dtwist" or piece_id == "factory":
+    #     # Code here to determind the other three spots covered, put in preview
+    #     pass
 
 def clear(lines: list, preview_lines: list):
     """ Clears a given spot in the file
