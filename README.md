@@ -11,10 +11,6 @@ As this is very much a work in progress, it likely won't do any of that for quit
 .trk files are essentially just a bunch of hexadecimals, with only certain lines actually contributing to the final track.
 Each track piece has its own hex value, biome value, and two zeroed out bytes, compared to the FF FF bytes when there is not a piece on that spot, and an orientation value.
 
-# Current bugs
-* This program cannot make a spot have an elevation of 0 or 2. All blank spots will be set to an elevation of 3, and attempting to make a spot have an elevation of 0 or 2 will prompt the user to change it to 1 or 3.
-* This program cannot place a piece from the city biome, or about 9 pieces from the jungle biome. Attempting to do this will prompt the user to place the same piece, just from a different biome.
-
 # How to use this program
 
 By running sb_sp_interface.py, you are able to create an entire single player track for LEGO Stunt Rally, without even opening the game!
