@@ -22,10 +22,10 @@ def main():
     user = os.path.expanduser("~")
 
     try:
-        file_create.create_file("C:\\Program Files (x86)\\LEGO Media\\LEGO Stunt Rally\\SavedTracks\\Test", biome, lines, complete)
+        file_create.create_file("C:\\Program Files (x86)\\LEGO Media\\LEGO Stunt Rally\\SavedTracks\\Autosaved", biome, lines, complete)
     except:
         print("Restore failed. Only works if the LSR install folder is the default install location. Continuing with CD launcher autosave.")
-    file_create.create_file(user + "\\AppData\\Local\\VirtualStore\\Program Files (x86)\\LEGO Media\\LEGO Stunt Rally\\SavedTracks\\Test", biome, lines, preview_lines)
+    file_create.create_file(user + "\\AppData\\Local\\VirtualStore\\Program Files (x86)\\LEGO Media\\LEGO Stunt Rally\\SavedTracks\\Autosaved", biome, lines, preview_lines)
 
 if __name__ == "__main__":
     main()
