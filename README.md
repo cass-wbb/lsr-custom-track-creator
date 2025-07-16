@@ -35,7 +35,6 @@ From here, you can copy another one and name it Autosaved.trk to load it on the 
 
 ### Future plans for this program
 
-* Make it possible to restore a working .trk file in the event that a track crashes
 * Make alternate versions for multiplayer tracks, as well as tracks containing pieces from multiple biomes
 
 ## Special thanks!
