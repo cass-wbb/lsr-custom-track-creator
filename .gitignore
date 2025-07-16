@@ -3,3 +3,4 @@ sb_sp_files/__pycache__/file_create.cpython-312.pyc
 sb_sp_files/__pycache__/initializer.cpython-312.pyc
 sb_sp_files/__pycache__/place_piece.cpython-312.pyc
 test.tsv
+debug_folder/read_hex.py
