@@ -1,6 +1,6 @@
 import biome_dicts
 
-def place_finish_line(x: int, y: int, orientation: int, elevation: int, biome: str, lines: list, preview_lines: list):
+def place_finish_line(y: int, x: int, orientation: int, elevation: int, biome: str, lines: list, preview_lines: list):
     """Places the finish line on the track
     
     :param x: The X coordinate to place the finish line on (1-16)
@@ -32,12 +32,12 @@ def place_finish_line(x: int, y: int, orientation: int, elevation: int, biome: s
     # Set the coordinates
     advance = False
     while not advance:
-        if x < 0 or x > 16 or y < 0 or y > 16:
+        if y < 0 or y > 16 or x < 0 or x > 16:
             print("Coordinates must be between a 16x16 grid.")
-            if x < 0 or x > 16:
-                x = int(input("Where would you like the finish line's X coordinate to be? 1 is the right side, and 16 is the left. "))
             if y < 0 or y > 16:
-                y = int(input("Where would you like the finish line's Y coordinate to be? 1 is the top and 16 is the bottom. "))
+                y = int(input("Where would you like the finish line's X coordinate to be? 1 is the right side, and 16 is the left. "))
+            if x < 0 or x > 16:
+                x = int(input("Where would you like the finish line's Y coordinate to be? 1 is the top and 16 is the bottom. "))
         else:
             advance = True
     
@@ -70,7 +70,7 @@ def place_finish_line(x: int, y: int, orientation: int, elevation: int, biome: s
     else:
         elevation_hex = b"\xC0\x41"
 
-    lines[y - 1][x - 1] = b"\x00\x00\x00\x00\x00\x00" + elevation_hex + piece_hex + orientation_hex + b"\x00\x00\x00"
+    lines[x - 1][y - 1] = b"\x00\x00\x00\x00\x00\x00" + elevation_hex + piece_hex + orientation_hex + b"\x00\x00\x00"
 
     # Here and below is for preview file
     # Determines whether or not the x coordinate is the last one on the right
@@ -79,7 +79,7 @@ def place_finish_line(x: int, y: int, orientation: int, elevation: int, biome: s
     else:
         preview_lines[y - 1][16 - x] = f"Finish Line\n"
 
-def place_other_part(x: int, y: int, orientation: int, piece_id: str, elevation: int, biome: str, lines: list, preview_lines: list):
+def place_other_part(y: int, x: int, orientation: int, piece_id: str, elevation: int, biome: str, lines: list, preview_lines: list):
     """Places a piece on the track
     
     :param x: The X coordinate to place the piece on (1-16)
@@ -111,12 +111,12 @@ def place_other_part(x: int, y: int, orientation: int, piece_id: str, elevation:
     # Sets coordinates
     advance = False
     while not advance:
-        if x < 0 or x > 16 or y < 0 or y > 16:
+        if y < 0 or y > 16 or x < 0 or x > 16:
             print("Coordinates must be between a 16x16 grid.")
-            if x < 0 or x > 16:
-                x = int(input("Where would you like the piece's X coordinate to be? 1 is the right side, and 16 is the left. "))
             if y < 0 or y > 16:
-                y = int(input("Where would you like the piece's Y coordinate to be? 1 is the top and 16 is the bottom. "))
+                y = int(input("Where would you like the piece's X coordinate to be? 1 is the right side, and 16 is the left. "))
+            if x < 0 or x > 16:
+                x = int(input("Where would you like the piece's Y coordinate to be? 1 is the top and 16 is the bottom. "))
         else:
             advance = True
     
@@ -135,7 +135,7 @@ def place_other_part(x: int, y: int, orientation: int, piece_id: str, elevation:
         elevation_hex = b"\xC0\x41"
 
     # Sets the line to the correct data
-    lines[y - 1][x - 1] = b"\x00\x00\x00\x00\x00\x00" + elevation_hex + piece_hex + orientation_hex + b"\x00\x00\x00"
+    lines[x - 1][y - 1] = b"\x00\x00\x00\x00\x00\x00" + elevation_hex + piece_hex + orientation_hex + b"\x00\x00\x00"
 
     # Here and below is for preview file
     # Sets biome and name data
@@ -149,13 +149,13 @@ def place_other_part(x: int, y: int, orientation: int, piece_id: str, elevation:
         preview_lines[y - 1][16 - x] = f"{piece_name}\n"
 
     # Next section is for using multi-spot pieces in the preview file, not implemented yet.
-    if piece_id == "bumps" or piece_id == "box" or piece_id == "tbar" or piece_id == "loop" or piece_id == "mud" or piece_id == "sjump" or piece_id == "rtrap" or piece_id == "cannon":
+    if piece_id == "tbar" or piece_id == "loop" or piece_id == "mud" or piece_id == "sjump" or piece_id == "rtrap" or piece_id == "cannon":
         # Code here to determine the other spot that is covered, and put that piece in the preview file
         if orientation == 1:
             if x != 16:
                 preview_lines[y - 1][16 - (x + 1)] = f"{piece_name}\t"
             else:
-                # clear the spot in the preview file, as it will not show in game
+                # clear the original spot in the preview file, as it will not show in game
                 preview_lines[y - 1][16 - x] = "-\t"
         elif orientation == 0:
             if y != 16:
@@ -164,17 +164,39 @@ def place_other_part(x: int, y: int, orientation: int, piece_id: str, elevation:
                 else:
                     preview_lines[y][16 - x] = f"{piece_name}\n"
             else:
-                # clear the spot in the preview file, as it will not show in game
+                # clear the original spot in the preview file, as it will not show in game
                 if x != 1:
-                    preview_lines[y][16 - x] = "-\t"
+                    preview_lines[y - 1][16 - x] = "-\t"
                 else:
-                    preview_lines[y][16 - x] = "-\n"
+                    preview_lines[y - 1][16 - x] = "-\n"
+        
+        # This part is producing cursed things
         elif orientation == 2:
-            # Basically the opposite of 0
-            pass
+            if y != 16:
+                if x != 1:
+                    preview_lines[y - 2][16 - x] = f"{piece_name}\t"
+                else:
+                    preview_lines[y - 2][16 - x] = f"{piece_name}\n"
+            else:
+                # clear the original spot in the preview file, as it will not show in game
+                if y != 1:
+                    preview_lines[y- 1][16 - x] = "-\t"
+                else:
+                    preview_lines[y - 1][16 - x] = "-\n"
+
+        # Cursedness over
         else:  # orientation == 3
-            # Basically the opposite of 1
-            pass
+            if x != 1:
+                if x != 2:
+                    preview_lines[y - 1][16 - (x - 1)] = f"{piece_name}\t"
+                else:
+                    preview_lines[y - 1][16 - (x - 1)] = f"{piece_name}\n"
+            else:
+                # clear the original spot in the preview file, as it will not show in game
+                if x != 1:
+                    preview_lines[y - 1][16 - x] = "-\t"
+                else:
+                    preview_lines[y - 1][16 - x] = "-\n"
 
     # elif piece_id == "splat" or piece_id == "turbo" or piece_id == "bumper" or piece_id == "traction" or piece_id == "freeze" or piece_id == "random":
     #     # Code here to determine the other spot that is covered, and put that piece in the preview file
