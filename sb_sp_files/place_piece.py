@@ -229,8 +229,7 @@ def clear(lines: list, preview_lines: list):
         else:
             advance = True
     
-    # Currently sets it to an elevation of 3 due to an issue with python and hex
-    lines[y - 1][x - 1] = b"\x00\x00\x00\x00\x00\x00\xC0\x41\xFF\xFF\xFF\xFF\x00\x00\x00\x00"
+    lines[y - 1][x - 1] = b"\x00\x00\x00\x00\x00\x00\x80\xBF\xFF\xFF\xFF\xFF\x00\x00\x00\x00"
 
     # Here and below is for preview file
     if x != 1:
