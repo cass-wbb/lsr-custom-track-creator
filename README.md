@@ -29,9 +29,7 @@ If you launch it from the installed launcher, put the track at the following:
 You can also put it in the root of the A:\ drive, whether that's a real floppy disk or just anything that's mounted there.
 
 ## If when you load a track in the editor, the game crashes:
-Go to the saved track locations seen above, do not go to the root of the A:\ drive, as this is not useful here.
-Delete Autosaved.trk
-From here, you can copy another one and name it Autosaved.trk to load it on the next time you go into construction, or you can so into construction and just make a new track from there.
+Simply run the restore.py file and it should make it so it no longer crashes.
 
 ### Future plans for this program
 
