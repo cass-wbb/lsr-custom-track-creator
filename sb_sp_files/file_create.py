@@ -24,7 +24,7 @@ def create_file(file_name: str, biome_line: str, track_lines: list, complete: bo
         else:
             f.write(b"\x00\x00\x00\x00\x00\x00\x00\x00")
         f.close()
-    print(f"File created with name {file_name}.trk. Move to a track folder or to the root of the A drive to play.")
+    print(f"File created at {file_name}.trk. Move to a track folder or to the root of the A drive to play if not there already.")
 
 def create_preview(file_name: str, biome: str, preview_lines: list):
     """ Creates a .tsv file that can be put in Excel or a similar program
