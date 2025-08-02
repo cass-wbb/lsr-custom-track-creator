@@ -24,9 +24,12 @@ Simply run the restore.py file and it should make it so it no longer crashes.
 * Make alternate versions for multiplayer tracks, as well as tracks containing pieces from multiple biomes
 * Add support for decorative pieces
 
-## Current bugs
+## Current known bugs
 * Placing multi-piece parts can bring it into out of bounds spaces when placesd on an edge with certain orientations, when you try to make it a part of the path, the game will crash.
 * Most multi-piece parts do not show up properly on the preview file
+  * Any piece that takes up at least 3 spots only shows one of the spots
+  * Any power up piece only shows one of the spots
+  * Any other 2 spot piece will not show up properly if you have an orientation of 2
 
 ## Special thanks!
 Thank you to [Yellow](https://github.com/yellowberryHN) for pointing out a bug with the code, as well as telling me how to write directly in hex!
