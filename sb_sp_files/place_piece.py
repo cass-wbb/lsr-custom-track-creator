@@ -148,7 +148,7 @@ def place_other_part(y: int, x: int, orientation: int, piece_id: str, elevation:
     else:
         preview_lines[y - 1][16 - x] = f"{piece_name}\n"
 
-    # Next section is for using multi-spot pieces in the preview file
+    # Next section is for using multi-spot pieces in the preview file, not implemented yet.
     if piece_id == "tbar" or piece_id == "loop" or piece_id == "mud" or piece_id == "sjump" or piece_id == "rtrap" or piece_id == "cannon":
         # Code here to determine the other spot that is covered, and put that piece in the preview file
         if orientation == 1:
@@ -170,12 +170,13 @@ def place_other_part(y: int, x: int, orientation: int, piece_id: str, elevation:
                 else:
                     preview_lines[y - 1][16 - x] = "-\n"
         
+        # This part is producing cursed things
         elif orientation == 2:
             if y != 16:
                 if x != 1:
-                    preview_lines[y - 1][15 - x] = f"{piece_name}\t"
+                    preview_lines[y - 2][16 - x] = f"{piece_name}\t"
                 else:
-                    preview_lines[y - 1][15 - x] = f"{piece_name}\n"
+                    preview_lines[y - 2][16 - x] = f"{piece_name}\n"
             else:
                 # clear the original spot in the preview file, as it will not show in game
                 if y != 1:
@@ -183,6 +184,7 @@ def place_other_part(y: int, x: int, orientation: int, piece_id: str, elevation:
                 else:
                     preview_lines[y - 1][16 - x] = "-\n"
 
+        # Cursedness over
         else:  # orientation == 3
             if x != 1:
                 if x != 2:
@@ -199,61 +201,9 @@ def place_other_part(y: int, x: int, orientation: int, piece_id: str, elevation:
     # elif piece_id == "splat" or piece_id == "turbo" or piece_id == "bumper" or piece_id == "traction" or piece_id == "freeze" or piece_id == "random":
     #     # Code here to determine the other spot that is covered, and put that piece in the preview file
     #     pass
-
-    elif piece_id == "3l":
-        # Code here to determine the other two spots covered, put that in the preview
-        if orientation == 1:
-            if x < 15:
-                preview_lines[y - 1][16 - (x + 1)] = f"{piece_name}\t"
-                preview_lines[y - 1][16 - (x + 2)] = f"{piece_name}\t"
-            else:
-                # clear the original spot in the preview file, as it will not show in game
-                preview_lines[y - 1][16 - x] = "-\t"
-        elif orientation == 0:
-            if y < 15:
-                if x != 1:
-                    preview_lines[y][16 - x] = f"{piece_name}\t"
-                    preview_lines[y + 1][16 - x] = f"{piece_name}\t"
-                else:
-                    preview_lines[y][16 - x] = f"{piece_name}\n"
-                    preview_lines[y + 1][16 - x] = f"{piece_name}\n"
-            else:
-                # clear the original spot in the preview file, as it will not show in game
-                if x != 1:
-                    preview_lines[y - 1][16 - x] = "-\t"
-                else:
-                    preview_lines[y - 1][16 - x] = "-\n"
-        
-        elif orientation == 2:
-            if y != 16:
-                if x != 1:
-                    preview_lines[y - 1][15 - x] = f"{piece_name}\t"
-                    preview_lines[y - 1][14 - x] = f"{piece_name}\t"
-                else:
-                    preview_lines[y - 1][15 - x] = f"{piece_name}\n"
-                    preview_lines[y - 1][14 - x] = f"{piece_name}\n"
-            else:
-                # clear the original spot in the preview file, as it will not show in game
-                if y != 1:
-                    preview_lines[y- 1][16 - x] = "-\t"
-                else:
-                    preview_lines[y - 1][16 - x] = "-\n"
-
-        else:  # orientation == 3
-            if x != 1:
-                if x != 2:
-                    preview_lines[y - 1][16 - (x - 1)] = f"{piece_name}\t"
-                    preview_lines[y - 1][16 - (x - 2)] = f"{piece_name}\t"
-                else:
-                    preview_lines[y - 1][16 - (x - 1)] = f"{piece_name}\n"
-                    preview_lines[y - 1][16 - (x - 2)] = f"{piece_name}\n"
-            else:
-                # clear the original spot in the preview file, as it will not show in game
-                if x != 1:
-                    preview_lines[y - 1][16 - x] = "-\t"
-                else:
-                    preview_lines[y - 1][16 - x] = "-\n"
-
+    # elif piece_id == "3l":
+    #     # Code here to determine the other two spots covered, put that in the preview
+    #     pass
     # elif piece_id == "lcurve" or piece_id == "wlcurve" or piece_id == "dtwist" or piece_id == "factory":
     #     # Code here to determind the other three spots covered, put in preview
     #     pass
