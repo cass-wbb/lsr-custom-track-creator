@@ -1,5 +1,5 @@
 *.pyc
 test.tsv
 test.trk
-debug_folder/read_hex.py
+/debug_folder
 /.vscode
