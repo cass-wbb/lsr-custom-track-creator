@@ -34,9 +34,10 @@ def create_preview(file_name: str, biome: str, preview_lines: list):
     :param biome: The biome data
     :param track_lines: The list of readable lines
     """
-    with open(f"{file_name}.tsv", 'w') as preview_file:
+    full_dir = "preview_files\\" + file_name
+    with open(f"{full_dir}.tsv", 'w') as preview_file:
         for element in preview_lines:
             for line in element:
                 preview_file.write(f"{line}")
         preview_file.close()
-    print(f"File created with name {file_name}.tsv. Use excel to view.")
+    print(f"File created with name {full_dir}.tsv. Use excel to view.")

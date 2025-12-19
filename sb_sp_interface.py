@@ -55,29 +55,30 @@ def main():
     name = input("What would you like the track to be named? ")
     target = ""
     target_selection = input("Where would you like to save this file to? \n1: save in CD launcher directory \n2: save in installed launcher directory \n3: save to floppy disk (root of A drive) \n4: provide path \n5: current folder\n")
+    backup_target = "saved_tracks\\" + name
 
     if target_selection == "1":
         target = "C:\\Program Files (x86)\\LEGO Media\\LEGO Stunt Rally\\SavedTracks\\" + name
         try: 
             file_create.create_file(target, biome, lines, complete)
         except:
-            print("failed, likely due to the LSR install folder not being in the default location. Saving to current folder.")
-            file_create.create_file(name, biome, lines, complete)
+            print("failed, likely due to the LSR install folder not being in the default location. Saving to tracks folder in current directory.")
+            file_create.create_file(backup_target, biome, lines, complete)
     elif target_selection == "2":
         user = os.path.expanduser("~")
         target = user + "\\AppData\\Local\\VirtualStore\\Program Files (x86)\\LEGO Media\\LEGO Stunt Rally\\SavedTracks\\" + name
         try:
-            file_create.create_file(target, biome, lines, preview_lines)
+            file_create.create_file(target, biome, lines, complete)
         except:
-            print("failed, saving to current folder.")
-            file_create.create_file(name, biome, lines, complete)
+            print("failed, saving to tracks folder in current directory.")
+            file_create.create_file(backup_target, biome, lines, complete)
     elif target_selection == "3":
         target = "A:\\" + name
         try:
             file_create.create_file(target, biome, lines, complete)
         except:
-            print("failed, likely due to there not being an A drive mounted. Saving to current folder.")
-            file_create.create_file(name, biome, lines, complete)
+            print("failed, likely due to there not being an A drive mounted. Saving to tracks folder in current directory.")
+            file_create.create_file(backup_target, biome, lines, complete)
     elif target_selection == "4":
         target_folder = input("Please provide a path: ")
         if target_folder[-1] != "\\":
@@ -87,11 +88,11 @@ def main():
         try:
             file_create.create_file(target, biome, lines, complete)
         except:
-            print("failed, likely due to path provided not existing. Saving to current folder.")
-            file_create.create_file(name, biome, lines, complete)
+            print("failed, likely due to path provided not existing. Saving to tracks folder in current directory.")
+            file_create.create_file(backup_target, biome, lines, complete)
     else:
-        print("saving to current folder")
-        file_create.create_file(name, biome, lines, complete)
+        print("Saving to tracks folder in current directory.")
+        file_create.create_file(backup_target, biome, lines, complete)
 
 
 if __name__ == "__main__":

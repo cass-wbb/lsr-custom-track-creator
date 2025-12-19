@@ -255,7 +255,7 @@ def place_other_part(y: int, x: int, orientation: int, piece_id: str, elevation:
                     preview_lines[y - 1][16 - x] = "-\n"
 
     # elif piece_id == "lcurve" or piece_id == "wlcurve" or piece_id == "dtwist" or piece_id == "factory":
-    #     # Code here to determind the other three spots covered, put in preview
+    #     # Code here to determine the other three spots covered, put in preview
     #     pass
 
 def clear(lines: list, preview_lines: list):
