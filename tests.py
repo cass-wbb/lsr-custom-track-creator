@@ -1,7 +1,7 @@
 import unittest
 import sb_sp_files.initializer as initializer
 
-class TestBlankTrack(unittest.TestCase):
+class TestInitializer(unittest.TestCase):
 
     def test_blank_lines(self):
         assert initializer.create_blank_lines() == [[
@@ -277,6 +277,24 @@ class TestBlankTrack(unittest.TestCase):
         b'\x00\x00\x00\x00\x00\x00\x80\xbf\xff\xff\xff\xff\x00\x00\x00\x00',
         b'\x00\x00\x00\x00\x00\x00\x80\xbf\xff\xff\xff\xff\x00\x00\x00\x00',
         ]]
+
+    def test_biomes(self):
+        # city, day
+        assert initializer.biome_day_select("city", 1) == b"\x28\x00\x01\x00\x01\x00\x00\x00\x03\x00\x00\x00\x00\x00\x00\x00"
+        # city, night
+        assert initializer.biome_day_select("city", 0) == b"\x28\x00\x01\x00\x01\x00\x00\x00\x03\x00\x00\x00\x01\x00\x00\x00"
+        # desert, day
+        assert initializer.biome_day_select("desert", 1) == b"\x28\x00\x01\x00\x01\x00\x00\x00\x02\x00\x00\x00\x00\x00\x00\x00"
+        # desert, night
+        assert initializer.biome_day_select("desert", 0) == b"\x28\x00\x01\x00\x01\x00\x00\x00\x02\x00\x00\x00\x01\x00\x00\x00"
+        # jungle, day
+        assert initializer.biome_day_select("desert", 1) == b"\x28\x00\x01\x00\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+        # jungle, night
+        assert initializer.biome_day_select("desert", 0) == b"\x28\x00\x01\x00\x01\x00\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00"
+        # winter, day
+        assert initializer.biome_day_select("desert", 1) == b"\x28\x00\x01\x00\x01\x00\x00\x00\x01\x00\x00\x00\x00\x00\x00\x00"
+        # winter, night
+        assert initializer.biome_day_select("desert", 0) == b"\x28\x00\x01\x00\x01\x00\x00\x00\x01\x00\x00\x00\x01\x00\x00\x00"
 
 
 if __name__ == '__main':
