@@ -8,7 +8,6 @@ def create_blank_lines() -> list[list[str]]:
     for element in lines:
         i = 0
         while i < 16:
-            # Currently sets to an elevation of 3 due to an issue with python
             element.append(b"\x00\x00\x00\x00\x00\x00\x80\xBF\xFF\xFF\xFF\xFF\x00\x00\x00\x00")
             i += 1
     return lines
