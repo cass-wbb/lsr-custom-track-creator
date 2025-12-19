@@ -1,5 +1,6 @@
 import unittest
 import sb_sp_files.initializer as initializer
+import sb_sp_files.place_piece as place_piece
 
 class TestInitializer(unittest.TestCase):
 
@@ -298,6 +299,16 @@ class TestInitializer(unittest.TestCase):
     
     def test_readable_blank_lines(self):
         assert initializer.create_readable_lines() == [['-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\n'], ['-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\n'], ['-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\n'], ['-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\n'], ['-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\n'], ['-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\n'], ['-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\n'], ['-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\n'], ['-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\n'], ['-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\n'], ['-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\n'], ['-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\n'], ['-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\n'], ['-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\n'], ['-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\n'], ['-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\t', '-\n']]
+
+
+class TestPlacePiece(unittest.TestCase):
+    
+    def test_finish_line(self):
+        lines = initializer.create_blank_lines()
+        preview_lines = initializer.create_readable_lines()
+        place_piece.place_finish_line(1,1,1,1,"city", lines, preview_lines)
+        assert lines[0][0] == b'\x00\x00\x00\x00\x00\x00\x00\x41\x30\x43\x00\x00\x01\x00\x00\x00'
+
 
 
 if __name__ == '__main':
